@@ -1,33 +1,26 @@
-# Debian Setup Script
-This script's primary goal is to extend already existing Debian features to the Debian desktop to make an extremely capable workstation setup.
+# PyTasks
+An extremely simple library providing a selection of tasks for users. Each task contains a script that is run after the tasks are commanded to run.
 
-# Supported Systems
-Currently, the only supported system for this script is **Debian 12 (Bookworm) w/ KDE Plasma**. The official supported tasksel is:
+# Usage
+The usage is incredibly straightforward and simple.
+To create a task, use the function `Task()`
 
+Example:
+```
+Task("Install MariaDB", """
+      echo This is a task to install mariadb
+      dnf install mariadb
+      echo Finished
+    """, selected=False)
+```
 
-- **Debian Desktop Environment**
-- **KDE Plasma**
-- **Standard System Utilities**
+# Scalability & Portability
+This library works on any UNIX-based system with python3 installed (such as Linux, MacOS, and basically all BSDs).
 
-# Instructions
-Run the following in a command line shell:
+# Primary Use
+This program's primary use is to basically act as tasksel but for things beyond just packages.
 
-`/bin/sudo /usr/bin/python3 -c "$(wget -q -O - https://raw.githubusercontent.com/DEM0NAssissan7/debian-setup/main/setup.py)"`
+# Future Plans
+Hopefully in the future, I plan to do the following:
 
-If that does not work, try:
-
-`/bin/sudo /usr/bin/python3 -c "$(curl -fsSL https://raw.githubusercontent.com/DEM0NAssissan7/debian-setup/main/setup.py)"`
-
-#### Be Advised: This script NEEDS administrator privileges in order to run
-
-# Services
-Among the services and applications installed include:
-- **Flatpak** w/ Flathub
-- **ZRAM** (half of system memory)
-- **Pipewire** w/ Wireplumber
-- **Google Chrome** (optional)
-- **VLC**
-
-All services installed are configured sanely out of the box, and almost zero setup is required. This script is totally hands-off (except for accepting the Google Chrome EULA).
-
-More services and configurations are coming (like making Flatpak default in Discover).
+- Use ncurses and have the ability to select options (like tasksel)
