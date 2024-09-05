@@ -43,13 +43,22 @@ prerun("""
     }
 """)
 
+Task("Fedora Linux Flathub Removal (repository)",
+     "flatpak remote-delete fedora", selected=True)
+
+Task("Flatpak by Default", """
+    gsettings set org.gnome.software packaging-format-preference "['flatpak', 'rpm']"
+    killall gnome-software
+    """, selected=True)
+
 Task("Gnome Console (replaces gnome-terminal)", """
     dnf rm gnome-terminal gnome-terminal-nautilus
     dnf in gnome-console
-    """, selected=True)
+    """, selected=True, reboot=True)
+
+# This implies that Fedora flatpak repo has already been removed
 Task("mpv (app)",
-            "flatpak install mpv",
-            selected=True)
+     "flatpak install app/io.mpv.Mpv/x86_64/stable", selected=True)
 
 
 run_tasks()
