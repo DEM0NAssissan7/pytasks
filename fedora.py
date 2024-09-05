@@ -54,7 +54,7 @@ Task("Flatpak by Default", """
 Task("Gnome Console (replaces gnome-terminal)", """
     dnf rm gnome-terminal gnome-terminal-nautilus
     dnf in gnome-console
-    """, selected=True, reboot=True)
+    """, selected=True)
 
 # This implies that Fedora flatpak repo has already been removed
 Task("mpv (app)",
