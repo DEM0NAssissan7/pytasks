@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from tasks import *
+from pytasks import *
 
 needsroot()
 
