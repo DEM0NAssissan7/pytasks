@@ -4,7 +4,6 @@ from enum import Enum
 
 import subprocess
 import os
-from sys import argv
 
 # Ensure the program has root permissions
 def needsroot():
