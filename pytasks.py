@@ -9,6 +9,11 @@ def needsroot():
         print("This program must be run as root.")
         exit()
 
+select_by_default=False
+def default_select(boolean):
+    global select_by_default
+    select_by_default = boolean
+
 # General functions
 def prompt(message, default):
     yes_no_prompt = "[Y/n]"
@@ -41,7 +46,7 @@ def finished_section(title):
 # Tasks
 tasks = []
 prerun_script = ""
-shell_exec = "/bin/sh"
+shell_exec = "/bin/bash"
 
 def prerun(script):
     global prerun_script
@@ -57,7 +62,7 @@ class Task:
         self.name = name
         self.script = script
         self.reboot = kwargs.get("reboot", False)
-        self.selected = kwargs.get("selected", False)
+        self.selected = kwargs.get("selected", select_by_default)
         tasks.append(self)
 
     def run(self):
