@@ -2,6 +2,13 @@
 
 from pytasks import *
 
+# Confirmation Checker
+print("WARNING: This script is ONLY tested for Fedora 40. This script WILL break your system if used on any other system.")
+print("Type 'Yes' to continue. Otherwise, just press [ENTER]")
+i = input("Continue?: ")
+if i != "Yes":
+    print("Exiting...")
+    exit()
 needsroot()
 
 prerun("""
@@ -48,17 +55,26 @@ prerun("""
 default_select(True)
 
 Task("Fedora Linux Flathub Removal (repository)",
-    "/bin/flatpak remote-delete fedora")
+    "flatpak remote-delete fedora")
+
+Task("GNOME Xwayland fractional scaling (unstable)", """
+    dnf copr enable taaem/mutter-xwayland-fractional-scaling
+
+    dnf rei gnome-settings-daemon
+    dnf up mutter mutter-common gnome-settings-daemon
+
+    gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer', 'xwayland-native-scaling', 'variable-refresh-rate']"
+    """, reboot=True)
 
 Task("Flatpak by Default", """
     gsettings set org.gnome.software packaging-format-preference "['flatpak', 'rpm']"
     killall gnome-software
     """)
 
-# Task("Gnome Console (replaces ptyxis) (WARNING: Breaks Nautilus)", """
-#     dnf rm ptyxis
-#     dnf in gnome-console
-#     """)
+Task("Gnome Console (replaces gnome-terminal)", """
+    dnf rm gnome-terminal gnome-terminal-nautilus
+    dnf in gnome-console
+    """)
 
 # This implies that Fedora flatpak repo has already been removed
 Task("mpv (app)",
