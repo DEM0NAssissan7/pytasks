@@ -19,8 +19,3 @@ This library works on any UNIX-based system with python3 installed (such as Linu
 
 # Primary Use
 This program's primary use is to basically act as tasksel but for things beyond just packages.
-
-# Future Plans
-Hopefully in the future, I plan to do the following:
-
-- Use ncurses and have the ability to select options (like tasksel)
