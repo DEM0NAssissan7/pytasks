@@ -60,6 +60,14 @@ Task("Flatpak by Default", """
 #     dnf in gnome-console
 #     """)
 
+# Better GNOME apps
+Task("GTK4 Apps (Papers, Showtime, Decibels)", """
+    flatpak install org.gnome.Papers org.gnome.Decibels org.gnome.Showtime
+""")
+Task("Remove replaced GTK3 apps (evince, totem, rhythmbox)", """
+    dnf rm evince totem rhythmbox
+""")
+
 # This implies that Fedora flatpak repo has already been removed
 Task("mpv (app)",
     "flatpak install app/io.mpv.Mpv/x86_64/stable")
