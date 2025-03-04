@@ -95,6 +95,12 @@ Task("Matlab", """
 
 Task("Google Chrome",
     "dnf in google-chrome-stable")
-
+    
+# Bitwig 5.2.7 because i dont wanna buy another upgrade license
+Task("Bitwig Studio 5.2.7", """
+    flatpak install com.bitwig.BitwigStudio
+    flatpak update --commit=d46e23d2d45efb8f9b5e38d60abbbeb17cce6ee3d8143918fa4d7f0708b4eee7 com.bitwig.BitwigStudio
+    flatpak mask com.bitwig.BitwigStudio # Mask Bitwig to prevent future updates
+    """, selected=False)
 
 run_tasks()
