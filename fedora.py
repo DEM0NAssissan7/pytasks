@@ -70,7 +70,7 @@ Task("Remove replaced GTK3 apps (evince, totem, rhythmbox)", """
 
 # This implies that Fedora flatpak repo has already been removed
 Task("mpv (app)",
-    "flatpak install app/io.mpv.Mpv/x86_64/stable")
+    "flatpak install app/io.mpv.Mpv/x86_64/stable", selected=False)
 
 Task("Matlab", """
     function matrun {
