@@ -94,7 +94,7 @@ Task("Matlab", """
     """, selected=False)
 
 Task("Google Chrome",
-    "dnf in google-chrome-stable")
+    "dnf in google-chrome-stable", selected=False)
     
 # Bitwig 5.2.7 because i dont wanna buy another upgrade license
 Task("Bitwig Studio 5.2.7", """
